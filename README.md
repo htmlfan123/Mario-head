@@ -1,9 +1,11 @@
 # Mario-head
 
-A lightweight Windows fullscreen video player that downloads a Mario head MP4, plays it in a borderless maximized window, and loops it until closed.
+[![License: MIT](https://img.shields.io/github/license/htmlfan123/Mario-head)](LICENSE)
+[![Windows](https://img.shields.io/badge/platform-Windows-blue)](#requirements)
+[![PowerShell](https://img.shields.io/badge/language-PowerShell-5391FE)](mariohead.ps1)
+[![Stars](https://img.shields.io/github/stars/htmlfan123/Mario-head)](https://github.com/htmlfan123/Mario-head/stargazers)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Platform: Windows](https://img.shields.io/badge/platform-Windows-lightgrey.svg)](#requirements)
+A Windows fullscreen video player that downloads a Mario head MP4, plays it in a borderless maximized window, and loops it until closed.
 
 ## Features
 
@@ -12,47 +14,43 @@ A lightweight Windows fullscreen video player that downloads a Mario head MP4, p
 - Audio playback
 - `Esc` key to close
 - No console window in the packaged executable
-- Temporary video download, stored in the Windows temp folder
+- Temporary video download in the Windows temp folder
 
 ## Requirements
 
 - Windows
 - PowerShell
 - An internet connection for the initial video download
-- Windows Presentation Framework (included with supported Windows desktop installations)
+- Windows Presentation Framework
 
 ## Download and Run
 
-### Option 1: Run the executable
+### Run the executable
 
-Download `mariohead.exe` from the [releases](../../releases) page and run it.
+Download `mariohead.exe` from the repository and run it.
 
 The video opens in fullscreen. Press `Esc` to close it.
 
-> **Security note:** Downloaded executables may trigger SmartScreen warnings. Only run files from sources you trust.
-
-### Option 2: Run the PowerShell script
+### Run the PowerShell script
 
 ```powershell
-# Allow this one script to run for the current PowerShell process
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-
 .\mariohead.ps1
 ```
 
-On first run, the script may install `PS2EXE`. It then creates `VideoPlayer.exe` on your desktop.
+The script can install PS2EXE and create `VideoPlayer.exe` on your desktop.
 
 ## Customize the Video
 
-Open `mariohead.ps1` and change this line:
+Open `mariohead.ps1` and replace the URL:
 
 ```powershell
 $url = "https://cdn.hackclub.com/01a137e7-fafb-7f4a-8b99-1636149c9fab/video.mp4"
 ```
 
-Replace the URL with a direct link to your own MP4, then run the script again.
+Then run the script again.
 
-You can also build an executable from the script manually:
+Build an executable manually:
 
 ```powershell
 Install-Module ps2exe -Scope CurrentUser -Force
@@ -69,18 +67,18 @@ Invoke-ps2exe -InputFile .\mariohead.ps1 -OutputFile .\mariohead.exe -NoConsole
 
 ## Troubleshooting
 
-- **The window does not open:** Verify that you are using Windows and that .NET/WPF is available.
-- **A download error appears:** Check your internet connection and confirm that the configured URL is reachable.
-- **PowerShell blocks the script:** Run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` in the PowerShell window, then try again.
-- **Execution policy is restricted by an organization:** Use the prebuilt executable if available, or ask your administrator.
+- **The window does not open:** Verify that Windows and .NET/WPF are available.
+- **A download error appears:** Check the internet connection and confirm that the configured URL is reachable.
+- **PowerShell blocks the script:** Run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`, then try again.
+- **Execution policy is restricted:** Use the executable or contact your administrator.
 
 ## Project Structure
 
 ```text
 Mario-head/
-├── mariohead.ps1  # PowerShell launcher and executable builder
-├── mariohead.exe  # Prebuilt Windows executable
-├── LICENSE        # MIT license
+├── mariohead.ps1
+├── mariohead.exe
+├── LICENSE
 └── README.md
 ```
 
